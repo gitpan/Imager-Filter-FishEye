@@ -4,7 +4,7 @@ use warnings;
 use 5.00800;
 
 BEGIN {
-    our $VERSION = "0.01";
+    our $VERSION = "0.02";
     eval {
         require XSLoader;
         XSLoader::load( 'Imager::Filter::FishEye', $VERSION );
@@ -18,11 +18,11 @@ BEGIN {
     };
 }
 
-my %defaults = ( cutoff => 0, d => 40, r => -1 );
+my %defaults = ( d => 40, r => -1 );
 
 Imager->register_filter(
     type     => 'fisheye',
-    callsub  => sub { my %hsh = @_; __fisheye( $hsh{image}, $hsh{cutoff}, $hsh{r}, $hsh{d} ) },
+    callsub  => sub { my %hsh = @_; __fisheye( $hsh{image}, $hsh{r}, $hsh{d} ) },
     defaults => \%defaults,
     callseq  => ['image']
 );
